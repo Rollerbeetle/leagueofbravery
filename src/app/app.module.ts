@@ -1,7 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+
+import { SharedModule } from './shared/shared.module';
+
+import { RiotApiService } from './api/riot-api.service';
+import { ChampionListModule } from './champion-list/champion-list.module';
 
 import { AppComponent } from './app.component';
 
@@ -11,10 +14,12 @@ import { AppComponent } from './app.component';
   ],
   imports: [
     BrowserModule,
-    FormsModule,
-    HttpModule
+    SharedModule,
+    ChampionListModule
   ],
-  providers: [],
+  providers: [
+    RiotApiService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

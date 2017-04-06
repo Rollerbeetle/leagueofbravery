@@ -1,0 +1,12 @@
+@import '~@angular/material/core/theming/prebuilt/deeppurple-amber.css';
+
+.fullwidth {
+  width: 100%;
+}
+.halfwidth {
+  width: 50%
+}
+.padding {
+  padding: 10px;
+}
+[hidden] { display: none !important;}
