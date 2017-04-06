@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
       <h1 >
         Champion List
       </h1>
-      <champion-list></champion-list>
+      <router-outlet></router-outlet>
     </div>
   `,
   styleUrls: ['./app.component.css']

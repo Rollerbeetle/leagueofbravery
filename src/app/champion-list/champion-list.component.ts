@@ -9,12 +9,21 @@ import { RiotApiService } from '../api/riot-api.service';
 })
 export class ChampionListComponent implements OnInit {
   champions: Observable<any[]>;
-  chosenTag = '';
+  chosenTag: string = '';
+  baseImgUrl: string;
+
+  allTags: string[] = [
+    'Marksman',
+    'Assassin',
+    'Mage',
+    'Support',
+    'Fighter',
+    'Tank'
+  ]
   constructor(private api: RiotApiService) {
-    this.champions = this.getChampions();
+    this.baseImgUrl = api.baseImgUrl;
   }
 
-  baseImgUrl ='http://ddragon.leagueoflegends.com/cdn/7.6.1/img/champion/';
 
   private getChampions(): Observable<any[]>{
     return this.api.getEndpoint('/static/champions', {
@@ -47,7 +56,7 @@ export class ChampionListComponent implements OnInit {
     return array;
   }
   ngOnInit() {
-
+    this.champions = this.getChampions();
   }
 
 }

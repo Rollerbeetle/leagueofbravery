@@ -1,0 +1,7 @@
+<div *ngIf="champion">
+  champion-details works!
+  <div *ngFor="let key of keys(champion)">
+    {{key}}: {{champion[key]}}
+
+  </div>
+</div>

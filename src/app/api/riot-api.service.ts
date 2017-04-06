@@ -12,6 +12,8 @@ import 'rxjs/add/operator/do';
 export class RiotApiService {
   private ServiceHost = 'http://localhost:3001';
 
+  public baseImgUrl ='http://ddragon.leagueoflegends.com/cdn/7.6.1/img/champion/';
+
   constructor(private http: Http) {
   }
 
