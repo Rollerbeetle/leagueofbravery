@@ -8,13 +8,13 @@
     </md-chip>
   </md-chip-list>
   <div fxLayout="row" fxLayoutWrap="wrap" fxFlexFill>
-    <md-card *ngFor="let champion of champions | async" fxFlex="20" [hidden]="chosenTag !=='' && !champion.tags.includes(chosenTag)">
+    <md-card *ngFor="let champion of champions | async" fxFlex="1 0 300px" [fxHide]="chosenTag !=='' && !champion.tags.includes(chosenTag)">
       <md-card-title-group>
         <md-card-title>{{ champion.name}}</md-card-title>
         <md-card-subtitle>{{ champion.title }}</md-card-subtitle>
         <img md-card-md-image src="{{baseImgUrl}}{{champion.image.full}}" [alt]="champion.name" [title]="champion.name">
       </md-card-title-group>
-      <md-card-content>
+      <md-card-content class="content">
         <md-chip-list>
           <md-chip *ngFor="let tag of champion.tags" (click)="chosenTag = tag">
             {{tag}}
@@ -24,7 +24,7 @@
       </md-card-content>
       <md-card-footer>
         <md-card-actions align="end">
-          <button md-button>ReadMore</button>
+          <button md-button routerLink="/detail/{{champion.id}}">ReadMore</button>
         </md-card-actions>
       </md-card-footer>
 

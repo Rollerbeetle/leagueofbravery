@@ -7,7 +7,7 @@ import { RiotApiService } from '../api/riot-api.service';
 @Component({
   selector: 'champion-details',
   templateUrl: './champion-details.component.html',
-  styleUrls: ['./champion-details.component.css']
+  styleUrls: ['./champion-details.component.scss'],
 })
 export class ChampionDetailsComponent implements OnInit {
   private champion: any;

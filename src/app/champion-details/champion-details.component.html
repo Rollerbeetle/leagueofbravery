@@ -1,5 +1,7 @@
-<div *ngIf="champion">
-  champion-details works!
+<div *ngIf="champion" class="champion-details">
+  <div class="champion-details__header">
+    {{ champion.name }}, {{ champion.title }}
+  </div>
   <div *ngFor="let key of keys(champion)">
     {{key}}: {{champion[key]}}
 

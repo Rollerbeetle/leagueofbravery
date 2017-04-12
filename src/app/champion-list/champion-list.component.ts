@@ -5,7 +5,7 @@ import { RiotApiService } from '../api/riot-api.service';
 @Component({
   selector: 'champion-list',
   templateUrl: './champion-list.component.html',
-  styleUrls: ['./champion-list.component.css'],
+  styleUrls: ['./champion-list.component.scss'],
 })
 export class ChampionListComponent implements OnInit {
   champions: Observable<any[]>;
