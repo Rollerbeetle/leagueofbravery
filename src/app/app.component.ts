@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
   selector: 'app-root',
   template: `
     <div fxLayout="column">
-      <h1 >
+      <h1 routerLink="/">
         Champion List
       </h1>
       <router-outlet></router-outlet>

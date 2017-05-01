@@ -55,6 +55,7 @@ export class ChampionListComponent implements OnInit {
 
     return array;
   }
+
   ngOnInit() {
     this.champions = this.getChampions();
   }

@@ -10,7 +10,7 @@ import 'rxjs/add/operator/do';
 
 @Injectable()
 export class RiotApiService {
-  private ServiceHost = 'http://localhost:3001';
+  private ServiceHost = 'http://localhost:1337';
 
   public baseImgUrl ='http://ddragon.leagueoflegends.com/cdn/7.6.1/img/champion/';
 
