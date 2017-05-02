@@ -7,6 +7,11 @@
     <div *ngFor="let key of keys(summoner)">
       {{key}}: {{summoner[key]}}
     </div>
+    <div class="mastery__list" *ngIf="masteries">
+      <div *ngFor="let key of keys(masteries)">
+        {{key}}: {{masteries[key]}}
+      </div>
+    </div>
     <button md-button (click)="resetSummoner()">reset</button>
   </div>
 </div>

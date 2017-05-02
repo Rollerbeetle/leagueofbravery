@@ -2,6 +2,8 @@ import { Http, BaseRequestOptions } from '@angular/http';
 import { Injectable } from '@angular/core';
 import { Observable } from "rxjs/Observable";
 import { environment } from '../../environments/environment';
+import { ActivatedRoute, Params }   from '@angular/router';
+
 
 
 
@@ -17,14 +19,37 @@ export class RiotApiService {
 
   public baseImgUrl = environment.baseImgUrl;
 
-  constructor(private http: Http) {
+  private region: string
+
+  constructor(private http: Http, private route: ActivatedRoute) {
+
+    let sub = this.route.queryParams.subscribe(query => this.region = query.region);
+
   }
 
-  public getEndpoint(endpoint:string, options: object = {}): Observable<any>{
+  public getEndpoint(endpoint:string, options: object = {params: {}}): Observable<any>{
     let url = this.ServiceHost + endpoint;
+    options['params']['region'] = this.region;
     return this.http.get(url, options)
     .map(response => response.json())
     .catch(this.handleError);
+  }
+
+  public getChampions(): Observable<any> {
+    return this.getEndpoint('/static/champions', {
+      params: {
+        champListData: 'image,tags,blurb',
+      }
+    })
+    .map(json => json.data)
+  }
+
+  public getChampionById(id: number): Observable<any> {
+    return this.getEndpoint('/static/champions/'+id, {
+      params: {
+        champData: 'all'
+      }
+    })
   }
 
   private handleError (error: Response | any): Observable<any> {

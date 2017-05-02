@@ -23,11 +23,7 @@ export class ChampionDetailsComponent implements OnInit {
 
   ngOnInit() {
     this.route.params
-    .switchMap((params: Params) => this.api.getEndpoint('/static/champions/'+params['id'], {
-      params: {
-        champData: 'all'
-      }
-    }))
+    .switchMap((params: Params) => this.api.getChampionById(params['id']))
     .subscribe(champion => this.champion = champion);
   }
 

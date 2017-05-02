@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { Observable } from "rxjs/Observable";
 import { RiotApiService } from '../api/riot-api.service';
+import { ActivatedRoute, Params }   from '@angular/router';
+
 
 @Component({
   selector: 'mastery',
@@ -10,12 +12,17 @@ import { RiotApiService } from '../api/riot-api.service';
 export class MasteryComponent implements OnInit {
   baseImgUrl: string;
   summoner: any;
+  masteries: any;
 
-  constructor(private api: RiotApiService) {
+  constructor(private api: RiotApiService, private route: ActivatedRoute) {
     this.baseImgUrl = api.baseImgUrl;
   }
 
   ngOnInit() {
+    let query = this.route.snapshot.queryParams;
+    if (!!query && query['summonerName']){
+      this.lookupSummoner(query['summonerName']);
+    }
   }
 
   lookupSummoner(searchTerm: string) {
@@ -30,6 +37,7 @@ export class MasteryComponent implements OnInit {
 
   resetSummoner() {
     this.summoner = {};
+    this.masteries = {};
   }
 
   keys(obj) : Array<string> {
@@ -38,7 +46,7 @@ export class MasteryComponent implements OnInit {
 
   getMasteriesForSummoner(summonerId:string) {
     this.api.getEndpoint(`/masteries/${summonerId}`).subscribe(
-      masteries => this.summoner.masteries = masteries,
+      masteries => this.masteries = masteries,
       error => console.log(error)
     );
 

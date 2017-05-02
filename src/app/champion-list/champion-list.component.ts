@@ -26,13 +26,7 @@ export class ChampionListComponent implements OnInit {
 
 
   private getChampions(): Observable<any[]>{
-    return this.api.getEndpoint('/static/champions', {
-      params: {
-        champListData: 'image,tags,blurb'
-      }
-    })
-    .map(json => json.data)
-    .map(obj => Object.keys(obj).map(key => obj[key]))
+    return this.api.getChampions();
   }
 
   private chooseTag( tag: string): void {
@@ -57,7 +51,9 @@ export class ChampionListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.champions = this.getChampions();
+    this.champions = this.getChampions()
+      .map(obj => Object.keys(obj).map(key => obj[key]))
+;
   }
 
 }
