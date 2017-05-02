@@ -4,5 +4,8 @@
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  serviceHost: 'http://localhost:1337',
+  name: 'local',
+  baseImgUrl: 'http://ddragon.leagueoflegends.com/cdn/7.9.2/img/champion/'
 };

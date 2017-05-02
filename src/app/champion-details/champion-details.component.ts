@@ -10,7 +10,7 @@ import { RiotApiService } from '../api/riot-api.service';
   styleUrls: ['./champion-details.component.scss'],
 })
 export class ChampionDetailsComponent implements OnInit {
-  private champion: any;
+  champion: any;
   constructor(
     private api: RiotApiService,
     private route: ActivatedRoute,

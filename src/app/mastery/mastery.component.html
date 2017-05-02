@@ -1,0 +1,12 @@
+<div class="mastery">
+  <div class="mastery__input">
+    <input #search (keyup.enter)="lookupSummoner(search.value)" (blur)="lookupSummoner(search.value); search.value ='' ">
+    <button md-button (click)="lookupSummoner(search.value)">Search</button>
+  </div>
+  <div class="mastery__list" *ngIf="summoner">
+    <div *ngFor="let key of keys(summoner)">
+      {{key}}: {{summoner[key]}}
+    </div>
+    <button md-button (click)="resetSummoner()">reset</button>
+  </div>
+</div>

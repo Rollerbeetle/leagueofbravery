@@ -28,7 +28,7 @@ export class ChampionListComponent implements OnInit {
   private getChampions(): Observable<any[]>{
     return this.api.getEndpoint('/static/champions', {
       params: {
-        champData: 'image,tags,blurb,lore'
+        champListData: 'image,tags,blurb'
       }
     })
     .map(json => json.data)
