@@ -5,10 +5,10 @@ import { Component } from '@angular/core';
   template: `
     <div fxLayout="column">
       <nav class="nav-bar" fxLayout="row">
-      <h1 class="nav-bar__link" routerLink="/champions" routerLinkActive="active">
+      <h1 class="nav-bar__link" routerLink="/champions" routerLinkActive="active" queryParamsHandling="merge">
         Champion List
       </h1>
-      <h1 class="nav-bar__link" routerLink="/mastery" routerLinkActive="active">
+      <h1 class="nav-bar__link" routerLink="/mastery" routerLinkActive="active" queryParamsHandling="merge">
         Mastery
       </h1>
       </nav>

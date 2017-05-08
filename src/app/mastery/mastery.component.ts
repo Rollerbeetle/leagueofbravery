@@ -1,7 +1,7 @@
 import { Component, OnInit} from '@angular/core';
 import { Observable } from "rxjs/Observable";
 import { RiotApiService } from '../api/riot-api.service';
-import { ActivatedRoute, Params }   from '@angular/router';
+import { ActivatedRoute, Params, Router }   from '@angular/router';
 
 
 @Component({
@@ -14,18 +14,25 @@ export class MasteryComponent implements OnInit {
   summoner: any;
   masteries: any;
 
-  constructor(private api: RiotApiService, private route: ActivatedRoute) {
+  constructor(private api: RiotApiService, private route: ActivatedRoute, private router: Router) {
     this.baseImgUrl = api.baseImgUrl;
   }
 
   ngOnInit() {
-    let query = this.route.snapshot.queryParams;
-    if (!!query && query['summonerName']){
-      this.lookupSummoner(query['summonerName']);
-    }
+    let queryParamsSub = this.route.queryParams
+    .map(params => params['summonerName'])
+    .subscribe(
+      name => this.getSummoner(name),
+      error => console.log(error)
+    );
   }
 
-  lookupSummoner(searchTerm: string) {
+  searchForSummoner(searchTerm: string) {
+    this.router.navigate([this.route.routeConfig.path], {queryParams: {summonerName: searchTerm}})
+  }
+
+  getSummoner(searchTerm: string) {
+    if (!!searchTerm) {}
     this.api.getEndpoint(`/summoner/by-name/${searchTerm}`).subscribe(
       summoner => {
         this.summoner = summoner;
@@ -45,7 +52,9 @@ export class MasteryComponent implements OnInit {
   }
 
   getMasteriesForSummoner(summonerId:string) {
-    this.api.getEndpoint(`/masteries/${summonerId}`).subscribe(
+    this.api.getEndpoint(`/masteries/${summonerId}`)
+    .map(obj => Object.keys(obj).map(key => obj[key]))
+    .subscribe(
       masteries => this.masteries = masteries,
       error => console.log(error)
     );

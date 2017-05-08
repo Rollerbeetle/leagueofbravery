@@ -1,12 +1,12 @@
-import { Http, BaseRequestOptions } from '@angular/http';
+import { Http, BaseRequestOptions, Response } from '@angular/http';
 import { Injectable } from '@angular/core';
-import { Observable } from "rxjs/Observable";
+import { Observable } from "rxjs/Rx";
 import { environment } from '../../environments/environment';
 import { ActivatedRoute, Params }   from '@angular/router';
 
 
 
-
+import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/filter';
@@ -52,17 +52,30 @@ export class RiotApiService {
     })
   }
 
-  private handleError (error: Response | any): Observable<any> {
-    let errMsg: string;
-    if (error instanceof Response) {
-      const body = error.json() || '';
-      errMsg = `${error.status} - ${error.statusText || ''} ${body}`;
-    } else {
-      errMsg = error.message ? error.message : error.toString();
-    }
-    console.error(errMsg);
+  private handleError (error: Response | any): Observable<any>{
+    let err: any;
 
-    return Observable.throw(errMsg)
+    if (error instanceof Response) {
+      err = {
+        status: error.status,
+        statusText: error.statusText
+      }
+      switch (error.status){
+        case 0:
+          err.error = 'connection_refused';
+          break;
+        case 424:
+          const bodyJson = error.json() || {};
+          err.error = bodyJson;
+          break;
+        default:
+          err.error = error.text();
+      }
+
+    } else {
+      err.message = error.message ? error.message : error.toString();
+    }
+    return Observable.throw(err);
   }
 
 }
