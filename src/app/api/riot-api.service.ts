@@ -38,10 +38,11 @@ export class RiotApiService {
   public getChampions(): Observable<any> {
     return this.getEndpoint('/static/champions', {
       params: {
-        champListData: 'image,tags,blurb',
+        champListData: 'all',
       }
     })
     .map(json => json.data)
+    .map(obj => Object.keys(obj).map(key => obj[key]))
   }
 
   public getChampionById(id: number): Observable<any> {

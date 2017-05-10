@@ -4,9 +4,13 @@ import { MaterialModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { RouterModule } from '@angular/router';
 
+import { TagPipe } from './pipes/tag.pipe';
+
+
 
 @NgModule({
   declarations: [
+    TagPipe
   ],
   imports: [
     CommonModule,
@@ -19,6 +23,7 @@ import { RouterModule } from '@angular/router';
     MaterialModule,
     FlexLayoutModule,
     RouterModule,
+    TagPipe
   ],
   providers: [
   ]

@@ -8,7 +8,7 @@
     </md-chip>
   </md-chip-list>
   <div fxLayout="row" fxLayoutWrap="wrap" fxFlexFill>
-    <md-card *ngFor="let champion of champions | async" fxFlex="1 0 300px" [fxHide]="chosenTag !=='' && !champion.tags.includes(chosenTag)">
+    <md-card *ngFor="let champion of champions | async | tags:chosenTag" fxFlex="1 0 300px">
       <md-card-title-group>
         <md-card-title>{{ champion.name}}</md-card-title>
         <md-card-subtitle>{{ champion.title }}</md-card-subtitle>

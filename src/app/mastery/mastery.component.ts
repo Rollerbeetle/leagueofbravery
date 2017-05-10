@@ -32,7 +32,8 @@ export class MasteryComponent implements OnInit {
   }
 
   getSummoner(searchTerm: string) {
-    if (!!searchTerm) {}
+    if (!searchTerm) return;
+
     this.api.getEndpoint(`/summoner/by-name/${searchTerm}`).subscribe(
       summoner => {
         this.summoner = summoner;

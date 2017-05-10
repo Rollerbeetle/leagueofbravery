@@ -4,14 +4,10 @@
     <button md-button (click)="searchForSummoner(search.value)">Search</button>
   </div>
   <div class="mastery__list" *ngIf="summoner">
-    <div *ngFor="let key of keys(summoner)">
-      {{key}}: {{summoner[key]}}
-    </div>
+    {{summoner | json}}
     <div class="mastery__list" *ngIf="masteries">
       <div *ngFor="let mastery of masteries">
-        <div *ngFor="let key of keys(mastery)">
-          {{key}}: {{mastery[key]}}
-        </div>
+        {{mastery | json}}
 
       </div>
     </div>

@@ -4,14 +4,7 @@ import { Component } from '@angular/core';
   selector: 'app-root',
   template: `
     <div fxLayout="column">
-      <nav class="nav-bar" fxLayout="row">
-      <h1 class="nav-bar__link" routerLink="/champions" routerLinkActive="active" queryParamsHandling="merge">
-        Champion List
-      </h1>
-      <h1 class="nav-bar__link" routerLink="/mastery" routerLinkActive="active" queryParamsHandling="merge">
-        Mastery
-      </h1>
-      </nav>
+      <nav-menu></nav-menu>
       <router-outlet></router-outlet>
     </div>
   `,

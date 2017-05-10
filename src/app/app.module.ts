@@ -10,12 +10,15 @@ import { ChampionDetailsModule } from './champion-details/champion-details.modul
 import { MasteryModule } from './mastery/mastery.module';
 
 import { AppComponent } from './app.component';
+import { NavMenuComponent } from './nav-menu/nav-menu.component';
+
 
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    NavMenuComponent,
   ],
   imports: [
     BrowserModule,
